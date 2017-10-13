@@ -233,9 +233,9 @@ addon-dir-create:
 
 {%- if common.addons.get('heapster_influxdb', {'enabled': False}).enabled %}
 
-/etc/kubernetes/addons/heapster-influxdb/heapster-address.yaml:
+/etc/kubernetes/addons/heapster-influxdb/graphana-service.yaml:
   file.managed:
-    - source: salt://kubernetes/files/kube-addons/heapster-influxdb/heapster-address.yaml
+    - source: salt://kubernetes/files/kube-addons/heapster-influxdb/graphana-service.yaml
     - template: jinja
     - group: root
     - dir_mode: 755
@@ -244,14 +244,6 @@ addon-dir-create:
 /etc/kubernetes/addons/heapster-influxdb/heapster-controller.yaml:
   file.managed:
     - source: salt://kubernetes/files/kube-addons/heapster-influxdb/heapster-controller.yaml
-    - template: jinja
-    - group: root
-    - dir_mode: 755
-    - makedirs: True
-
-/etc/kubernetes/addons/heapster-influxdb/heapster-endpoint.yaml:
-  file.managed:
-    - source: salt://kubernetes/files/kube-addons/heapster-influxdb/heapster-endpoint.yaml
     - template: jinja
     - group: root
     - dir_mode: 755
