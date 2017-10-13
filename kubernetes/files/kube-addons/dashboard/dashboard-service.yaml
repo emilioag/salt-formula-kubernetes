@@ -1,4 +1,3 @@
-{%- from "kubernetes/map.jinja" import master with context %}
 apiVersion: v1
 kind: Service
 metadata:
@@ -9,11 +8,8 @@ metadata:
     kubernetes.io/cluster-service: "true"
     addonmanager.kubernetes.io/mode: Reconcile
 spec:
-{%- if master.network.engine != 'opencontrail' %}
   selector:
     k8s-app: kubernetes-dashboard
-  type: NodePort
-{%- endif %}
   ports:
   - port: 80
     targetPort: 9090
