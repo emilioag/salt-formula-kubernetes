@@ -100,17 +100,9 @@ addon-dir-create:
 
 {%- if common.addons.get('dns', {'enabled': False}).enabled %}
 
-/etc/kubernetes/addons/dns/kubedns-svc.yaml:
+/etc/kubernetes/addons/dns/kube-dns.yaml:
   file.managed:
-    - source: salt://kubernetes/files/kube-addons/dns/kubedns-svc.yaml
-    - template: jinja
-    - group: root
-    - dir_mode: 755
-    - makedirs: True
-
-/etc/kubernetes/addons/dns/kubedns-rc.yaml:
-  file.managed:
-    - source: salt://kubernetes/files/kube-addons/dns/kubedns-rc.yaml
+    - source: salt://kubernetes/files/kube-addons/dns/kube-dns.yaml
     - template: jinja
     - group: root
     - dir_mode: 755
@@ -118,9 +110,9 @@ addon-dir-create:
 
 {% if common.addons.dns.get('autoscaler', {}).get('enabled', True) %}
 
-/etc/kubernetes/addons/dns/kubedns-autoscaler.yaml:
+/etc/kubernetes/addons/dns/kube-horizontal-autoscaler.yaml:
   file.managed:
-    - source: salt://kubernetes/files/kube-addons/dns/kubedns-autoscaler.yaml
+    - source: salt://kubernetes/files/kube-addons/dns/kube-horizontal-autoscaler.yaml
     - template: jinja
     - group: root
     - dir_mode: 755
